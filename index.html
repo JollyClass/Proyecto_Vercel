@@ -10,19 +10,19 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Variables CSS para colores */
+        /* Variables CSS */
         :root {
-            --primary-color: #5b21b6; /* Morado vibrante */
-            --secondary-color: #8b5cf6; /* Morado más claro */
-            --accent-color: #00e0b7;   /* Verde azulado brillante */
-            --text-color: #2d3748;     /* Gris oscuro */
-            --light-bg: #f8fafc;       /* Fondo muy claro */
+            --primary-color: #5b21b6;
+            --secondary-color: #8b5cf6;
+            --accent-color: #00e0b7;
+            --text-color: #2d3748;
+            --light-bg: #f8fafc;
             --card-bg: #ffffff;
-            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
             --transition-speed: 0.3s ease;
         }
 
-        /* RESET BÁSICO Y TIPOGRAFÍA */
+        /* RESET BÁSICO */
         * {
             margin: 0;
             padding: 0;
@@ -33,10 +33,8 @@
             font-family: 'Roboto', sans-serif;
             line-height: 1.7;
             color: var(--text-color);
-            background: linear-gradient(135deg, var(--light-bg) 0%, #eef2f5 100%);
+            background: var(--light-bg); /* Fondo simple para asegurar visibilidad */
             min-height: 100vh;
-            display: flex;
-            flex-direction: column;
         }
 
         .container {
@@ -46,40 +44,38 @@
             padding: 20px 0;
         }
 
-        /* ENCABEZADO (HEADER) */
+        /* ENCABEZADO */
         header {
             background-color: var(--primary-color);
             color: white;
             padding: 60px 0;
             text-align: center;
-            box-shadow: 0 0 30px rgba(91, 33, 182, 0.7); 
-            position: relative;
-            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
             font-family: 'Poppins', sans-serif;
             font-size: 3em;
             margin-bottom: 10px;
-            font-weight: 700;
-            text-shadow: 0 0 10px var(--accent-color); 
         }
 
-        /* SECCIONES PRINCIPALES (CARDS) */
+        main {
+            padding-top: 30px;
+        }
+
+        /* SECCIONES (CARDS) */
         .card {
             background-color: var(--card-bg);
             padding: 30px;
             margin-bottom: 30px;
             border-radius: 12px;
             box-shadow: var(--shadow);
-            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-            opacity: 1; /* Aseguramos que se vea */
-            transform: translateY(0); /* Desactivamos la animación que podría causar problemas */
+            transition: transform var(--transition-speed);
         }
 
         .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
@@ -93,23 +89,13 @@
             align-items: center;
             gap: 10px;
         }
-
-        /* Estilo de Contenido Específico */
+        
+        /* Contenido y columnas */
         .content-columns { display: flex; gap: 30px; flex-wrap: wrap; }
         .column { flex: 1; min-width: 300px; padding: 20px; background-color: var(--light-bg); border-radius: 8px; border-left: 4px solid var(--secondary-color); }
-        .example { font-style: italic; color: #e30000; border-left: 4px solid #dc3545; padding-left: 10px; background-color: #ffebeb; border-radius: 4px; padding-top: 5px; padding-bottom: 5px; }
+        .example { font-style: italic; color: #e30000; border-left: 4px solid #dc3545; padding-left: 10px; background-color: #ffebeb; }
 
-        /* SECCIÓN AMENAZAS COMUNES (DIAPOSITIVA 4) */
-        .threat-list { display: flex; flex-direction: column; gap: 15px; }
-        .threat-item {
-            background-color: #f7f0ff;
-            padding: 20px;
-            border-radius: 10px;
-            border-left: 5px solid var(--secondary-color);
-        }
-        .threat-item h4 { font-family: 'Poppins', sans-serif; font-size: 1.4em; color: var(--primary-color); margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
-        
-        /* SECCIÓN CONSECUENCIAS (DIAPOSITIVA 5) */
+        /* Estilo de Consecuencias (Diapositiva 5) */
         .consequences-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -121,37 +107,13 @@
             padding: 20px;
             border-radius: 10px;
             border-bottom: 5px solid #e53e3e;
-            box-shadow: 0 4px 10px rgba(229, 62, 62, 0.1);
+            transition: transform var(--transition-speed);
         }
+        .consequence-box:hover { transform: scale(1.03); }
         .consequence-box i { font-size: 2.5em; color: #e53e3e; margin-bottom: 10px; }
-        .consequence-box strong { display: block; font-size: 1.2em; color: #c53030; margin-bottom: 5px; }
+        .consequence-box strong { font-size: 1.2em; color: #c53030; }
 
-        /* SECCIÓN CASOS DE ESTUDIO (DIAPOSITIVA 6) */
-        .case-studies-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-        }
-        .case-study-item {
-            background-color: #f0f4f8;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            text-align: center;
-        }
-        .case-study-item .image-placeholder {
-            width: 100%;
-            height: 120px;
-            background: linear-gradient(to right, #a78bfa, #c4b5fd);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: white;
-            font-size: 3em;
-            border-bottom: 3px solid var(--primary-color);
-        }
-        
-        /* SECCIÓN PREVENCIÓN (DIAPOSITIVA 7) */
+        /* Estilo de Prevención (Diapositiva 7) */
         .prevention-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -163,9 +125,9 @@
             border-radius: 10px;
             border-top: 5px solid #28a745;
         }
-        .prevention-item h3 { color: #1a8a3a; font-weight: 700; font-size: 1.4em; margin-top: 0; display: flex; align-items: center; gap: 10px; }
+        .prevention-item h3 { color: #1a8a3a; display: flex; align-items: center; gap: 10px; }
 
-        /* SECCIÓN FACTORES (DIAPOSITIVAS 8 Y 9) */
+        /* Estilo de Factores (Diapositivas 8 y 9) */
         .factor-section li {
             background-color: var(--light-bg);
             padding: 15px 20px;
@@ -176,31 +138,14 @@
             gap: 12px;
         }
         
-        /* SECCIÓN CONCLUSIÓN (DIAPOSITIVA 10) */
+        /* Estilo de Conclusión (Diapositiva 10) */
         .conclusion-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 30px;
         }
-        .conclusion-principle {
-            background-color: #fff;
-            padding: 25px;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-        }
-        .conclusion-principle h4 {
-            font-family: 'Poppins', sans-serif;
-            font-size: 1.5em;
-            color: var(--accent-color);
-            margin-bottom: 5px;
-            border-bottom: 2px dashed var(--accent-color);
-            padding-bottom: 5px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
 
-        /* PIE DE PÁGINA (FOOTER) */
+        /* PIE DE PÁGINA */
         footer {
             background-color: var(--primary-color);
             color: white;
@@ -209,17 +154,15 @@
             margin-top: 40px;
         }
 
-        /* MEDIA QUERY para Responsividad */
+        /* MEDIA QUERY */
         @media (max-width: 768px) {
-            .content-columns, .consequences-grid, .case-studies-grid, .prevention-grid, .conclusion-grid {
+            .content-columns, .consequences-grid, .prevention-grid, .conclusion-grid {
                 grid-template-columns: 1fr;
-                flex-direction: column;
             }
         }
     </style>
     </head>
 <body>
-
     <header>
         <div class="container">
             <h1><i class="fas fa-shield-alt"></i> Ciberseguridad Web: Amenazas y Defensa</h1>
@@ -233,13 +176,13 @@
             <div class="content-columns">
                 <div class="column">
                     <h3>Vulnerabilidad (Debilidad) <i class="fas fa-bug"></i></h3>
-                    <p>Un **defecto** en un sistema, aplicación o protocolo que un atacante puede explotar. Es la puerta abierta en el muro de seguridad.</p>
-                    <p class="example">**Ejemplo:** Un código que no revisa el tipo de dato que introduce un usuario en un formulario.</p>
+                    <p>Un **defecto** en un sistema, aplicación o protocolo que un atacante puede explotar.</p>
+                    <p class="example">**Ejemplo:** Un código que no revisa el tipo de dato que introduce un usuario.</p>
                 </div>
                 <div class="column">
                     <h3>Amenaza / Ataque (Acción) <i class="fas fa-bomb"></i></h3>
                     <p>Un **riesgo** potencial de daño. El ataque es la acción de un actor malicioso para explotar esa vulnerabilidad.</p>
-                    <p class="example">**Ejemplo:** Un atacante realiza una Inyección SQL, aprovechando el fallo del código.</p>
+                    <p class="example">**Ejemplo:** Un atacante realiza una Inyección SQL.</p>
                 </div>
             </div>
         </section>
@@ -250,74 +193,48 @@
             <div class="threat-list">
                 <div class="threat-item">
                     <h4><i class="fas fa-fish"></i> Phishing e Ingeniería Social</h4>
-                    <p>Técnicas para manipular a las personas y obtener información sensible (credenciales, datos bancarios) suplantando una identidad de confianza.</p>
+                    <p>Técnicas para manipular a las personas y obtener información sensible suplantando una identidad de confianza.</p>
                 </div>
                 <div class="threat-item">
-                    <h4><i class="fas fa-database"></i> Inyección SQL y XSS (Cross-Site Scripting)</h4>
-                    <p>Inserción de código malicioso (SQL o JavaScript) a través de entradas de usuario para robar datos, comprometer la base de datos o secuestrar sesiones.</p>
-                </div>
-                <div class="threat-item">
-                    <h4><i class="fas fa-user-secret"></i> Robo de Identidad y Credenciales</h4>
-                    <p>Obtención de datos de acceso mediante fuerza bruta, ataques de diccionario o el compromiso de sistemas (credential stuffing).</p>
-                </div>
-                <div class="threat-item">
-                    <h4><i class="fas fa-server"></i> Ataques DDoS (Denegación de Servicio Distribuido)</h4>
-                    <p>Saturar un servidor con tráfico desde múltiples fuentes para agotar sus recursos y hacerlo inaccesible para los usuarios legítimos.</p>
+                    <h4><i class="fas fa-database"></i> Inyección SQL y XSS</h4>
+                    <p>Inserción de código malicioso para robar datos, comprometer la base de datos o secuestrar sesiones.</p>
                 </div>
             </div>
         </section>
 
         <section id="consecuencias" class="card">
             <h2><i class="fas fa-skull-crossbones"></i> 3. Consecuencias de la Materialización del Riesgo</h2>
-            <p class="subtitle">El impacto de una brecha de seguridad se mide en múltiples niveles: económico, legal y reputacional.</p>
+            <p class="subtitle">El impacto de una brecha de seguridad se mide en múltiples niveles.</p>
             <div class="consequences-grid">
                 <div class="consequence-box">
                     <i class="fas fa-money-bill-wave"></i>
                     <strong>Pérdidas Económicas ($10.5T)</strong>
-                    <span>Costos de recuperación, investigación y tarifas de rescate (Ransomware).</span>
+                    <span>Costos de recuperación y multas.</span>
                 </div>
                 <div class="consequence-box">
                     <i class="fas fa-chart-line"></i>
                     <strong>Daño Reputacional</strong>
-                    <span>Pérdida de confianza de clientes y socios, difícil de recuperar.</span>
+                    <span>Pérdida de confianza.</span>
                 </div>
                 <div class="consequence-box">
                     <i class="fas fa-power-off"></i>
                     <strong>Interrupción Operacional</strong>
-                    <span>Caída del servicio, pérdida de productividad y capacidad de respuesta.</span>
-                </div>
-                <div class="consequence-box">
-                    <i class="fas fa-gavel"></i>
-                    <strong>Multas y Sanciones Legales</strong>
-                    <span>Incumplimiento de normativas de privacidad (GDPR, HIPAA, etc.).</span>
+                    <span>Caída del servicio.</span>
                 </div>
             </div>
         </section>
 
         <section id="casos-ejemplos" class="card">
             <h2><i class="fas fa-file-invoice"></i> 4. Casos Importantes de Brechas de Seguridad</h2>
-            <p class="subtitle">Ejemplos recientes que demuestran la magnitud de las amenazas globales.</p>
-            <div class="case-studies-grid">
-                <div class="case-study-item">
-                    <div class="image-placeholder"><i class="fas fa-plane-departure"></i></div>
-                    <div class="content">
-                        <h4>Ataque a una Aerolínea</h4>
-                        <p>Ejemplo de robo masivo de datos de clientes y credenciales de tarjetas de crédito.</p>
-                    </div>
+            <p class="subtitle">Ejemplos recientes que demuestran la magnitud de las amenazas.</p>
+            <div class="content-columns">
+                <div class="column">
+                    <h4><i class="fas fa-plane-departure"></i> Ataque a Aerolínea</h4>
+                    <p>Robo masivo de datos de clientes y credenciales.</p>
                 </div>
-                <div class="case-study-item">
-                    <div class="image-placeholder"><i class="fas fa-lock"></i></div>
-                    <div class="content">
-                        <h4>Compromiso de Bases de Datos</h4>
-                        <p>Caso de ataque persistente que afecta a millones de registros personales.</p>
-                    </div>
-                </div>
-                <div class="case-study-item">
-                    <div class="image-placeholder"><i class="fas fa-cloud"></i></div>
-                    <div class="content">
-                        <h4>Brecha en la Cadena de Suministro</h4>
-                        <p>Ataque que compromete un proveedor de software, afectando a múltiples empresas cliente.</p>
-                    </div>
+                <div class="column">
+                    <h4><i class="fas fa-cloud"></i> Brecha en la Cadena de Suministro</h4>
+                    <p>Compromiso de un proveedor, afectando a múltiples empresas cliente.</p>
                 </div>
             </div>
         </section>
@@ -328,15 +245,15 @@
             <div class="prevention-grid">
                 <div class="prevention-item">
                     <h3><i class="fas fa-sync-alt"></i> Gestión de Parches</h3>
-                    <p>Mantener todo el software actualizado. Corregir vulnerabilidades conocidas es la defensa más básica y efectiva.</p>
-                </div>
-                <div class="prevention-item">
-                    <h3><i class="fas fa-cogs"></i> Configuración Segura por Defecto</h3>
-                    <p>Asegurar que las configuraciones de los sistemas sean restrictivas y seguras desde el inicio.</p>
+                    <p>Mantener todo el software actualizado.</p>
                 </div>
                 <div class="prevention-item">
                     <h3><i class="fas fa-lock"></i> Validar Entradas de Usuario</h3>
-                    <p>Nunca confiar en los datos de entrada. Filtrar y sanear datos para prevenir Inyecciones SQL, XSS y Command Injection.</p>
+                    <p>Nunca confiar en los datos de entrada para prevenir inyecciones.</p>
+                </div>
+                <div class="prevention-item">
+                    <h3><i class="fas fa-cogs"></i> Configuración Segura</h3>
+                    <p>Asegurar que las configuraciones de los sistemas sean restrictivas.</p>
                 </div>
             </div>
         </section>
@@ -348,20 +265,17 @@
                 <div class="column">
                     <h3><i class="fas fa-laptop-code"></i> Factores Técnicos (Diapositiva 8)</h3>
                     <ul>
-                        <li><i class="fas fa-code"></i> Uso de ORMs y consultas parametrizadas para evitar la Inyección SQL.</li>
-                        <li><i class="fas fa-user-shield"></i> Implementación de políticas de Content Security Policy (CSP).</li>
-                        <li><i class="fas fa-network-wired"></i> Utilizar Firewalls de Aplicaciones Web (WAF) para filtrar tráfico malicioso.</li>
-                        <li><i class="fas fa-bug"></i> Realizar pruebas de penetración y análisis de código estático.</li>
-                        <li><i class="fas fa-key"></i> Implementar Autenticación Multifactor (MFA) en todos los accesos críticos.</li>
+                        <li><i class="fas fa-code"></i> Uso de consultas parametrizadas.</li>
+                        <li><i class="fas fa-key"></i> Implementar Autenticación Multifactor (MFA).</li>
+                        <li><i class="fas fa-bug"></i> Pruebas de seguridad regulares.</li>
                     </ul>
                 </div>
                 <div class="column">
-                    <h3><i class="fas fa-user-friends"></i> Factor Humano y Concienciación (Diapositiva 9)</h3>
+                    <h3><i class="fas fa-user-friends"></i> Factor Humano (Diapositiva 9)</h3>
                     <ul>
-                        <li><i class="fas fa-chalkboard-teacher"></i> **Formación Continua:** Educar sobre nuevos métodos de phishing y malware.</li>
-                        <li><i class="fas fa-lock"></i> **Gestión de Contraseñas:** Promover el uso de contraseñas complejas y únicas con gestores.</li>
-                        <li><i class="fas fa-exclamation-triangle"></i> **Simulacros de Phishing:** Evaluar la respuesta de los usuarios ante ataques de ingeniería social.</li>
-                        <li><i class="fas fa-handshake"></i> **Cultura de Seguridad:** Fomentar una cultura donde la seguridad es responsabilidad de todos.</li>
+                        <li><i class="fas fa-chalkboard-teacher"></i> Formación Continua.</li>
+                        <li><i class="fas fa-lock"></i> Buena Gestión de Contraseñas.</li>
+                        <li><i class="fas fa-handshake"></i> Fomentar la Cultura de Seguridad.</li>
                     </ul>
                 </div>
             </div>
@@ -369,23 +283,23 @@
 
         <section id="conclusion" class="card">
             <h2><i class="fas fa-hand-holding-heart"></i> 7. Conclusión: El Triángulo de la Seguridad</h2>
-            <p class="subtitle">La seguridad web se fundamenta en un equilibrio constante de tres principios.</p>
+            <p class="subtitle">La seguridad web se fundamenta en la responsabilidad de todos.</p>
             <div class="conclusion-grid">
                 <div class="conclusion-principle">
                     <h4><i class="fas fa-check"></i> Prevención Activa</h4>
-                    <p>Identificar y mitigar vulnerabilidades antes de que puedan ser explotadas.</p>
+                    <p>Mitigar vulnerabilidades.</p>
                 </div>
                 <div class="conclusion-principle">
                     <h4><i class="fas fa-search"></i> Detección Temprana</h4>
-                    <p>Monitorear y responder a las amenazas en tiempo real para limitar el daño.</p>
+                    <p>Monitorear y responder a las amenazas.</p>
                 </div>
                 <div class="conclusion-principle">
-                    <h4><i class="fas fa-redo"></i> Recuperación Post-Incidente</h4>
-                    <p>Tener planes de respaldo y recuperación para restaurar la normalidad rápidamente.</p>
+                    <h4><i class="fas fa-redo"></i> Recuperación</h4>
+                    <p>Planes de respaldo y restauración.</p>
                 </div>
                 <div class="conclusion-principle">
-                    <h4><i class="fas fa-infinity"></i> Responsabilidad de Todos</h4>
-                    <p>La ciberseguridad no es solo un problema técnico; requiere el compromiso de cada individuo.</p>
+                    <h4><i class="fas fa-infinity"></i> Responsabilidad</h4>
+                    <p>Compromiso individual.</p>
                 </div>
             </div>
         </section>
