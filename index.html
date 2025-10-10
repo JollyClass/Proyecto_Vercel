@@ -46,13 +46,13 @@
             padding: 20px 0;
         }
 
-        /* ENCABEZADO (HEADER) - Estilo Neón/Vibrante */
+        /* ENCABEZADO (HEADER) */
         header {
             background-color: var(--primary-color);
             color: white;
             padding: 60px 0;
             text-align: center;
-            box-shadow: 0 0 30px rgba(91, 33, 182, 0.7); /* Sombra de color */
+            box-shadow: 0 0 30px rgba(91, 33, 182, 0.7); 
             position: relative;
             overflow: hidden;
         }
@@ -62,7 +62,7 @@
             font-size: 3em;
             margin-bottom: 10px;
             font-weight: 700;
-            text-shadow: 0 0 10px var(--accent-color); /* Efecto neón en el texto */
+            text-shadow: 0 0 10px var(--accent-color); 
         }
 
         /* SECCIONES PRINCIPALES (CARDS) */
@@ -73,28 +73,14 @@
             border-radius: 12px;
             box-shadow: var(--shadow);
             transition: transform var(--transition-speed), box-shadow var(--transition-speed);
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fadeIn cardAnimation 0.6s forwards;
-            animation-delay: var(--animation-delay, 0s);
+            opacity: 1; /* Aseguramos que se vea */
+            transform: translateY(0); /* Desactivamos la animación que podría causar problemas */
         }
 
         .card:hover {
             transform: translateY(-5px);
             box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
-
-        @keyframes fadeIn {
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        /* Retrasos para animar las tarjetas una por una */
-        .card:nth-child(1) { --animation-delay: 0.2s; }
-        .card:nth-child(2) { --animation-delay: 0.4s; }
-        .card:nth-child(3) { --animation-delay: 0.6s; }
-        .card:nth-child(4) { --animation-delay: 0.8s; }
-        .card:nth-child(5) { --animation-delay: 1.0s; }
-        .card:nth-child(6) { --animation-delay: 1.2s; }
 
         h2 {
             font-family: 'Poppins', sans-serif;
@@ -108,8 +94,6 @@
             gap: 10px;
         }
 
-        h2 .fa-solid { color: var(--accent-color); font-size: 0.8em; }
-
         /* Estilo de Contenido Específico */
         .content-columns { display: flex; gap: 30px; flex-wrap: wrap; }
         .column { flex: 1; min-width: 300px; padding: 20px; background-color: var(--light-bg); border-radius: 8px; border-left: 4px solid var(--secondary-color); }
@@ -122,51 +106,25 @@
             padding: 20px;
             border-radius: 10px;
             border-left: 5px solid var(--secondary-color);
-            transition: transform var(--transition-speed);
         }
-        .threat-item:hover { transform: translateX(5px); background-color: #fff; }
         .threat-item h4 { font-family: 'Poppins', sans-serif; font-size: 1.4em; color: var(--primary-color); margin-bottom: 5px; display: flex; align-items: center; gap: 10px; }
-        .threat-item h4 .fa-solid { color: var(--accent-color); }
-
+        
         /* SECCIÓN CONSECUENCIAS (DIAPOSITIVA 5) */
         .consequences-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
             text-align: center;
-            margin-top: 20px;
         }
-
         .consequence-box {
             background-color: #ffeded;
             padding: 20px;
             border-radius: 10px;
             border-bottom: 5px solid #e53e3e;
             box-shadow: 0 4px 10px rgba(229, 62, 62, 0.1);
-            transition: transform var(--transition-speed);
         }
-
-        .consequence-box:hover {
-            transform: scale(1.05);
-        }
-
-        .consequence-box i {
-            font-size: 2.5em;
-            color: #e53e3e;
-            margin-bottom: 10px;
-        }
-
-        .consequence-box strong {
-            display: block;
-            font-size: 1.2em;
-            color: #c53030;
-            margin-bottom: 5px;
-        }
-
-        .consequence-box span {
-            font-size: 0.9em;
-            color: #4a5568;
-        }
+        .consequence-box i { font-size: 2.5em; color: #e53e3e; margin-bottom: 10px; }
+        .consequence-box strong { display: block; font-size: 1.2em; color: #c53030; margin-bottom: 5px; }
 
         /* SECCIÓN CASOS DE ESTUDIO (DIAPOSITIVA 6) */
         .case-studies-grid {
@@ -174,13 +132,11 @@
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
         }
-
         .case-study-item {
             background-color: #f0f4f8;
             border-radius: 10px;
             overflow: hidden;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
-            transition: transform var(--transition-speed);
             text-align: center;
         }
         .case-study-item .image-placeholder {
@@ -195,86 +151,43 @@
             border-bottom: 3px solid var(--primary-color);
         }
         
-        .case-study-item .content { padding: 20px; }
-        .case-study-item h4 { font-family: 'Poppins', sans-serif; color: var(--primary-color); font-size: 1.4em; margin-bottom: 5px; }
-        .case-study-item p { font-size: 0.95em; color: #4a5568; }
-
-
         /* SECCIÓN PREVENCIÓN (DIAPOSITIVA 7) */
         .prevention-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 25px;
-            margin-top: 20px;
         }
-
         .prevention-item {
-            background-color: #e6ffed; /* Fondo verde muy suave */
+            background-color: #e6ffed; 
             padding: 25px;
             border-radius: 10px;
-            border-top: 5px solid #28a745; /* Borde superior verde */
-            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
-            transition: background-color var(--transition-speed);
+            border-top: 5px solid #28a745;
         }
-        .prevention-item:hover { background-color: #d1f7e4; }
         .prevention-item h3 { color: #1a8a3a; font-weight: 700; font-size: 1.4em; margin-top: 0; display: flex; align-items: center; gap: 10px; }
-        .prevention-item h3 .fa-solid { color: #28a745; }
-
 
         /* SECCIÓN FACTORES (DIAPOSITIVAS 8 Y 9) */
-        .factor-section h3 {
-            font-size: 1.8em;
-            color: var(--primary-color);
-            margin-bottom: 15px;
-        }
-
-        .factor-section ul {
-            list-style-type: none;
-            padding-left: 0;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-        }
-
         .factor-section li {
             background-color: var(--light-bg);
             padding: 15px 20px;
             border-radius: 8px;
             border-left: 5px solid var(--secondary-color);
-            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
             display: flex;
             align-items: flex-start;
             gap: 12px;
-            font-size: 1.05em;
-            color: #4a5568;
-            transition: border-color var(--transition-speed);
         }
         
-        .factor-section li .fa-solid {
-            color: var(--primary-color);
-            font-size: 1.2em;
-            margin-top: 3px;
-        }
-
         /* SECCIÓN CONCLUSIÓN (DIAPOSITIVA 10) */
         .conclusion-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 30px;
         }
-
         .conclusion-principle {
             background-color: #fff;
             padding: 25px;
             border-radius: 10px;
             border: 1px solid #ddd;
-            transition: background-color var(--transition-speed);
         }
-
-        .conclusion-principle:hover {
-            background-color: #f0f4f8;
-        }
-
         .conclusion-principle h4 {
             font-family: 'Poppins', sans-serif;
             font-size: 1.5em;
@@ -294,22 +207,14 @@
             text-align: center;
             padding: 25px 0;
             margin-top: 40px;
-            box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
         }
-
-        footer p { margin: 0; font-size: 1.1em; letter-spacing: 0.5px; }
 
         /* MEDIA QUERY para Responsividad */
         @media (max-width: 768px) {
-            header h1 { font-size: 2.2em; }
-            h2 { font-size: 1.7em; }
             .content-columns, .consequences-grid, .case-studies-grid, .prevention-grid, .conclusion-grid {
                 grid-template-columns: 1fr;
                 flex-direction: column;
             }
-            .column { min-width: unset; }
-            .consequence-box { padding: 15px; }
-            .conclusion-principle { padding: 20px; }
         }
     </style>
     </head>
@@ -353,11 +258,11 @@
                 </div>
                 <div class="threat-item">
                     <h4><i class="fas fa-user-secret"></i> Robo de Identidad y Credenciales</h4>
-                    <p>Obtención de datos de acceso mediante fuerza bruta, ataques de diccionario o la explotación de bases de datos comprometidas (credential stuffing).</p>
+                    <p>Obtención de datos de acceso mediante fuerza bruta, ataques de diccionario o el compromiso de sistemas (credential stuffing).</p>
                 </div>
                 <div class="threat-item">
                     <h4><i class="fas fa-server"></i> Ataques DDoS (Denegación de Servicio Distribuido)</h4>
-                    <p>Inundar un servidor con tráfico desde múltiples fuentes para agotar sus recursos y hacerlo inaccesible para los usuarios legítimos.</p>
+                    <p>Saturar un servidor con tráfico desde múltiples fuentes para agotar sus recursos y hacerlo inaccesible para los usuarios legítimos.</p>
                 </div>
             </div>
         </section>
@@ -427,7 +332,7 @@
                 </div>
                 <div class="prevention-item">
                     <h3><i class="fas fa-cogs"></i> Configuración Segura por Defecto</h3>
-                    <p>Asegurar que las configuraciones de los sistemas sean restrictivas y seguras desde el inicio (Ej: deshabilitar puertos no esenciales).</p>
+                    <p>Asegurar que las configuraciones de los sistemas sean restrictivas y seguras desde el inicio.</p>
                 </div>
                 <div class="prevention-item">
                     <h3><i class="fas fa-lock"></i> Validar Entradas de Usuario</h3>
