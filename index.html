@@ -3,10 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Exposición: Vulnerabilidades y Ataques Web</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <title>Exposición: Ciberseguridad Web | Vulnerabilidades y Ataques</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
+        /* Variables CSS para colores */
+        :root {
+            --primary-color: #5b21b6; /* Un morado vibrante */
+            --secondary-color: #8b5cf6; /* Un morado más claro */
+            --accent-color: #00e0b7;   /* Un verde azulado brillante */
+            --text-color: #2d3748;     /* Gris oscuro para el texto */
+            --light-bg: #f8fafc;       /* Fondo muy claro */
+            --card-bg: #ffffff;
+            --shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+            --transition-speed: 0.3s ease;
+        }
+
         /* RESET BÁSICO Y TIPOGRAFÍA */
         * {
             margin: 0;
@@ -15,10 +28,13 @@
         }
 
         body {
-            font-family: 'Open Sans', sans-serif; /* Fuente principal legible */
-            line-height: 1.6;
-            color: #4a4a4a; /* Gris oscuro suave */
-            background-color: #f0f4f8; /* Fondo azul pastel muy claro */
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background: linear-gradient(135deg, var(--light-bg) 0%, #eef2f5 100%); /* Degradado suave */
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
         }
 
         .container {
@@ -30,190 +46,402 @@
 
         /* ENCABEZADO (HEADER) */
         header {
-            background-color: #a7a7d4; /* Morado pastel */
-            background-image: linear-gradient(to right, #a7a7d4, #c9a7d4); /* Gradiente suave */
+            background-color: var(--primary-color);
             color: white;
-            padding: 50px 0;
+            padding: 60px 0;
             text-align: center;
-            border-bottom-left-radius: 30px; /* Esquinas redondeadas para un look moderno */
-            border-bottom-right-radius: 30px;
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-            margin-bottom: 40px;
+            box-shadow: var(--shadow);
+            position: relative;
+            overflow: hidden; /* Para el efecto de fondo */
+        }
+
+        header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: rgba(255, 255, 255, 0.05); /* Overlay sutil */
+            transform: rotate(45deg);
+            animation: headerBg 20s infinite linear;
+            opacity: 0.1;
+        }
+
+        @keyframes headerBg {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
 
         header h1 {
-            font-family: 'Poppins', sans-serif; /* Fuente destacada para títulos */
+            font-family: 'Poppins', sans-serif;
             font-size: 3em;
-            margin-bottom: 15px;
+            margin-bottom: 10px;
             font-weight: 700;
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            position: relative; /* Para que quede por encima del before */
         }
 
         header p {
             font-size: 1.3em;
             opacity: 0.9;
+            position: relative;
+        }
+
+        /* MAIN CONTENT */
+        main {
+            flex-grow: 1; /* Para que el main ocupe el espacio disponible */
+            padding-top: 30px;
         }
 
         /* SECCIONES PRINCIPALES (CARDS) */
         .card {
-            background-color: white;
-            padding: 40px;
+            background-color: var(--card-bg);
+            padding: 30px;
             margin-bottom: 30px;
-            border-radius: 15px; /* Bordes más redondeados */
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08); /* Sombra más pronunciada pero suave */
-            transition: transform 0.3s ease-in-out; /* Transición para interactividad */
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            opacity: 0; /* Para la animación de entrada */
+            transform: translateY(20px); /* Para la animación de entrada */
+            animation: fadeIn cardAnimation 0.6s forwards;
+            animation-delay: var(--animation-delay, 0s);
         }
 
         .card:hover {
-            transform: translateY(-5px); /* Efecto hover sutil */
+            transform: translateY(-5px);
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
         }
+
+        @keyframes fadeIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Retrasos para animar las tarjetas una por una */
+        .card:nth-child(1) { --animation-delay: 0.2s; }
+        .card:nth-child(2) { --animation-delay: 0.4s; }
+        .card:nth-child(3) { --animation-delay: 0.6s; }
+        .card:nth-child(4) { --animation-delay: 0.8s; }
+        .card:nth-child(5) { --animation-delay: 1.0s; }
+        .card:nth-child(6) { --animation-delay: 1.2s; }
+        .card:nth-child(7) { --animation-delay: 1.4s; }
+
 
         h2 {
             font-family: 'Poppins', sans-serif;
             font-size: 2.2em;
-            color: #845ec2; /* Morado más oscuro */
-            border-bottom: 4px solid #c4a7d4; /* Línea suave debajo del título */
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
             padding-bottom: 15px;
-            margin-bottom: 30px;
-            text-align: center;
+            margin-bottom: 25px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        h2 .fa-solid {
+            color: var(--accent-color);
+            font-size: 0.8em;
         }
 
         h3 {
             font-family: 'Poppins', sans-serif;
-            color: #6a057f; /* Morado profundo */
-            margin-top: 25px;
+            color: var(--primary-color);
+            margin-top: 20px;
             margin-bottom: 12px;
-            font-size: 1.4em;
+            font-size: 1.5em;
         }
 
         p {
-            margin-bottom: 18px;
-            font-size: 1.1em;
-            color: #555;
+            margin-bottom: 15px;
         }
 
         .subtitle {
             font-style: italic;
-            color: #888;
-            margin-bottom: 30px;
-            text-align: center;
+            color: #6c757d;
+            margin-bottom: 25px;
             font-size: 1.1em;
+            border-left: 4px solid var(--accent-color);
+            padding-left: 10px;
         }
 
         /* ESTILOS ESPECÍFICOS PARA DEFINICIÓN */
         .content-columns {
             display: flex;
-            gap: 40px;
+            gap: 30px;
             flex-wrap: wrap; /* Permite que las columnas se envuelvan en pantallas pequeñas */
         }
 
         .column {
             flex: 1;
-            min-width: 300px; /* Ancho mínimo para columnas */
-            padding: 25px;
-            background-color: #f7faff; /* Fondo muy claro para las columnas */
-            border-radius: 10px;
-            box-shadow: inset 0 2px 8px rgba(0, 0, 0, 0.05); /* Sombra interna sutil */
-            border: 1px solid #e0e0f0; /* Borde suave */
+            min-width: 300px; /* Ancho mínimo para las columnas */
+            padding: 20px;
+            background-color: var(--light-bg);
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            border-left: 4px solid var(--secondary-color);
+            position: relative;
+        }
+        
+        .column h3 {
+            font-size: 1.3em;
+            color: var(--primary-color);
+            margin-top: 0;
+        }
+
+        .column .fa-solid {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 2em;
+            color: rgba(0, 0, 0, 0.08); /* Icono fantasma */
         }
 
         .example {
             font-style: italic;
-            color: #e63946; /* Rojo de advertencia */
-            background-color: #ffe0e0; /* Fondo rojo muy claro */
-            border-left: 6px solid #e63946;
-            padding: 12px 15px;
-            border-radius: 8px;
+            color: #e30000; /* Rojo para destacar el peligro */
+            border-left: 4px solid #dc3545;
+            padding-left: 10px;
+            background-color: #ffebeb;
+            border-radius: 4px;
+            padding-top: 5px;
+            padding-bottom: 5px;
+        }
+
+        /* SECCIÓN DE AMENAZAS COMUNES */
+        .threat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
             margin-top: 20px;
-            font-weight: 600;
         }
 
-        /* ESTILOS ESPECÍFICOS PARA PREVENCIÓN */
-        .prevention-section {
-            background-color: #e0f2f7; /* Fondo azul verdoso pastel */
-        }
-
-        .prevention-list {
-            display: grid; /* Usamos Grid para un layout más flexible */
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /* Columnas responsivas */
-            gap: 25px;
-        }
-
-        .prevention-item {
-            background-color: #ffffff;
+        .threat-item {
+            background-color: #f7f0ff; /* Fondo más claro para amenazas */
             padding: 25px;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.07);
-            border: 1px solid #cce7ee;
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            border: 1px solid var(--secondary-color);
+            transition: transform var(--transition-speed);
         }
 
-        .prevention-item h3 {
-            color: #2a9d8f; /* Verde azulado para acción positiva */
-            font-weight: 700;
+        .threat-item:hover {
+            transform: translateY(-5px);
+        }
+
+        .threat-item h4 {
+            font-family: 'Poppins', sans-serif;
+            font-size: 1.4em;
+            color: var(--primary-color);
+            margin-bottom: 10px;
             display: flex;
             align-items: center;
+            gap: 10px;
+        }
+        .threat-item h4 .fa-solid {
+            color: var(--accent-color);
         }
 
-        .prevention-item h3::before {
-            content: '✓'; /* Icono de check */
-            display: inline-block;
-            margin-right: 10px;
-            color: #2a9d8f;
-            font-size: 1.2em;
-            font-weight: 700;
+        .threat-item p {
+            font-size: 0.95em;
+            color: #4a5568;
         }
 
-        /* ESTILOS ESPECÍFICOS PARA CONSECUENCIAS */
-        .consequences-section {
-            background-color: #fff0f0; /* Fondo rosado muy suave */
-        }
-
+        /* SECCIÓN DE CONSECUENCIAS (ESTILO MEJORADO) */
         .consequences-section ul {
             list-style-type: none;
             padding-left: 0;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 20px;
+            margin-top: 20px;
         }
 
         .consequences-section li {
-            background-color: #ffebeb; /* Fondo rosado claro */
-            border-left: 6px solid #e63946; /* Borde rojo fuerte */
-            margin-bottom: 0; /* Eliminar margen para gap */
+            background-color: #ffeded; /* Fondo suave para destacar el riesgo */
+            border-left: 6px solid #e53e3e; /* Borde rojo fuerte */
             padding: 15px 20px;
-            border-radius: 10px;
+            border-radius: 8px;
             font-weight: 600;
-            color: #c0392b; /* Texto rojo oscuro */
+            color: #c53030;
             display: flex;
             align-items: center;
+            gap: 10px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+            transition: transform var(--transition-speed);
+        }
+        .consequences-section li:hover {
+            transform: scale(1.02);
         }
 
-        .consequences-section li::before {
-            content: '✕'; /* Icono de "x" */
-            display: inline-block;
-            margin-right: 10px;
-            color: #e63946;
+        .consequences-section li .fa-solid {
+            color: #e53e3e;
             font-size: 1.2em;
+        }
+
+        /* SECCIÓN DE CASOS IMPORTANTES / EJEMPLOS (SIMULADO) */
+        .case-studies-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .case-study-item {
+            background-color: #f0f4f8; /* Un fondo gris azulado suave */
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+        }
+
+        .case-study-item:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .case-study-item .image-placeholder {
+            width: 100%;
+            height: 180px;
+            background: linear-gradient(to right, #a78bfa, #c4b5fd); /* Degradado púrpura */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            font-size: 3em;
+            border-bottom: 3px solid var(--primary-color);
+        }
+        
+        .case-study-item .content {
+            padding: 20px;
+        }
+
+        .case-study-item h4 {
+            font-family: 'Poppins', sans-serif;
+            color: var(--primary-color);
+            font-size: 1.4em;
+            margin-bottom: 10px;
+        }
+
+        .case-study-item p {
+            font-size: 0.95em;
+            color: #4a5568;
+        }
+
+        /* SECCIÓN DE ESTRATEGIAS DE PREVENCIÓN */
+        .prevention-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 20px;
+        }
+
+        .prevention-item {
+            background-color: var(--card-bg);
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #d1e7dd; /* Borde verde suave */
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+            transition: transform var(--transition-speed), box-shadow var(--transition-speed);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .prevention-item:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .prevention-item h3 {
+            color: #1a8a3a; /* Verde para la acción positiva */
             font-weight: 700;
+            font-size: 1.4em;
+            margin-top: 0;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .prevention-item h3 .fa-solid {
+            color: var(--accent-color);
+            font-size: 1em;
+        }
+
+        .prevention-item p {
+            font-size: 0.95em;
+            color: #4a5568;
+        }
+        
+        .prevention-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background-color: var(--accent-color);
+            transform: translateX(-100%);
+            transition: transform var(--transition-speed);
+        }
+
+        .prevention-item:hover::before {
+            transform: translateX(0);
+        }
+
+        /* SECCIÓN DE FACTORES TÉCNICOS Y HUMANOS (LISTAS ESTILIZADAS) */
+        .tech-factors ul, .human-factors ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+
+        .tech-factors li, .human-factors li {
+            background-color: var(--light-bg);
+            padding: 15px 20px;
+            margin-bottom: 10px;
+            border-radius: 8px;
+            border-left: 5px solid var(--secondary-color);
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.05);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1.05em;
+            color: #4a5568;
+        }
+        
+        .tech-factors li .fa-solid, .human-factors li .fa-solid {
+            color: var(--primary-color);
+            font-size: 1.2em;
+            margin-top: 3px;
         }
 
         /* PIE DE PÁGINA (FOOTER) */
         footer {
-            background-color: #3f51b5; /* Azul índigo para un toque más serio */
-            background-image: linear-gradient(to right, #3f51b5, #673ab7); /* Gradiente */
+            background-color: var(--primary-color);
             color: white;
             text-align: center;
-            padding: 20px 0;
-            margin-top: 50px;
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
+            padding: 25px 0;
+            margin-top: 40px;
             box-shadow: 0 -4px 10px rgba(0, 0, 0, 0.1);
         }
 
         footer p {
             margin: 0;
-            font-size: 1em;
-            opacity: 0.9;
+            font-size: 1.1em;
+            letter-spacing: 0.5px;
+        }
+
+        footer a {
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 700;
+            transition: color var(--transition-speed);
+        }
+
+        footer a:hover {
+            color: #fff;
+            text-decoration: underline;
         }
 
         /* MEDIA QUERY para Responsividad (móviles) */
@@ -227,29 +455,52 @@
             }
 
             h2 {
-                font-size: 1.8em;
+                font-size: 1.7em;
             }
 
             h3 {
                 font-size: 1.2em;
             }
 
-            .card {
-                padding: 25px;
-            }
-
-            .content-columns, .prevention-list, .consequences-section ul {
+            .content-columns {
                 flex-direction: column;
-                grid-template-columns: 1fr; /* Una columna en móvil */
+                gap: 20px;
             }
 
             .column {
-                min-width: auto;
+                min-width: unset;
+                padding: 15px;
+            }
+            
+            .threat-item, .consequences-section li, .prevention-item,
+            .case-study-item {
                 padding: 15px;
             }
 
-            .prevention-item, .consequences-section li {
-                padding: 15px;
+            .consequences-section ul {
+                grid-template-columns: 1fr;
+            }
+            .case-studies-grid, .prevention-grid, .threat-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .tech-factors li, .human-factors li {
+                font-size: 0.95em;
+            }
+        }
+
+        @media (max-width: 480px) {
+            header h1 {
+                font-size: 1.8em;
+            }
+            h2 {
+                font-size: 1.4em;
+            }
+            .container {
+                padding: 10px 0;
+            }
+            .card {
+                padding: 20px;
             }
         }
     </style>
@@ -258,68 +509,163 @@
 
     <header>
         <div class="container">
-            <h1>🛡️ Ciberseguridad Web: Ataques y Vulnerabilidades</h1>
-            <p>Conoce, previene y entiende el impacto de las amenazas digitales.</p>
+            <h1><i class="fas fa-shield-alt"></i> Ciberseguridad Web: Amenazas y Defensa</h1>
+            <p>Descubre las vulnerabilidades, aprende a prevenirlas y comprende sus consecuencias.</p>
         </div>
     </header>
 
     <main class="container">
         <section id="definicion" class="card">
-            <h2>1. ¿Qué son Vulnerabilidades y Amenazas?</h2>
-            <p class="subtitle">Comprendiendo las debilidades y las acciones maliciosas en el entorno digital.</p>
+            <h2><i class="fas fa-question-circle"></i> ¿Qué son Vulnerabilidades y Amenazas Web?</h2>
             <div class="content-columns">
                 <div class="column">
-                    <h3>Vulnerabilidad (Debilidad) 🐞</h3>
-                    <p>Una **vulnerabilidad** es un punto débil, un fallo de diseño, implementación o configuración en un sistema, aplicación o servicio que puede ser explotado por un atacante. Es una puerta abierta para el acceso no autorizado o la interrupción.</p>
-                    <p class="example">**Ejemplo Común:** Un software de servidor web obsoleto con parches de seguridad faltantes.</p>
+                    <h3>Vulnerabilidad (Debilidad) <i class="fas fa-bug"></i></h3>
+                    <p>Una **vulnerabilidad** es un defecto o fallo en el diseño, implementación o configuración de un sistema, aplicación o servicio web. Es un "agujero" que puede ser explotado.</p>
+                    <p class="example">**Ejemplo:** Un código que permite que se inyecte SQL a través de un campo de texto.</p>
                 </div>
                 <div class="column">
-                    <h3>Amenaza/Ataque (Acción) 💣</h3>
-                    <p>Una **amenaza** es el potencial de un evento para causar daño. Un **ataque** es la materialización de una amenaza, donde un actor malicioso intenta explotar una o varias vulnerabilidades para lograr un objetivo.</p>
-                    <p class="example">**Ejemplos Comunes:** **Inyección SQL**, **Cross-Site Scripting (XSS)**, **Phishing**, **Ransomware**, **DDoS**.</p>
+                    <h3>Amenaza / Ataque (Acción Maliciosa) <i class="fas fa-bomb"></i></h3>
+                    <p>Una **amenaza** es un riesgo potencial de que algo dañino ocurra. Un **ataque** es la ejecución activa de esa amenaza, explotando una vulnerabilidad para conseguir un objetivo malicioso.</p>
+                    <p class="example">**Ejemplo:** Un atacante realiza una Inyección SQL para robar datos de la base de datos.</p>
                 </div>
             </div>
         </section>
 
-        <section id="prevencion" class="card prevention-section">
-            <h2>2. Estrategias de Prevención (El Escudo Protector) 🛡️</h2>
-            <p class="subtitle">Medidas proactivas para fortalecer la seguridad de tus sistemas web.</p>
-            <div class="prevention-list">
-                <div class="prevention-item">
-                    <h3>Validación de Entradas Segura</h3>
-                    <p>Implementar estrictas reglas de validación y saneamiento para toda la entrada de usuario. Esto previene inyecciones de código, comandos y scripting malicioso.</p>
+        <section id="amenazas-comunes" class="card">
+            <h2><i class="fas fa-exclamation-triangle"></i> Principales Amenazas y Vectores de Ataque</h2>
+            <p class="subtitle">Conocer al enemigo es el primer paso para protegerse. Estas son algunas de las más frecuentes:</p>
+            <div class="threat-grid">
+                <div class="threat-item">
+                    <h4><i class="fas fa-fish"></i> Phishing</h4>
+                    <p>Intentos de engañar a los usuarios para que revelen información sensible (contraseñas, datos bancarios) a través de sitios web falsos o correos electrónicos fraudulentos.</p>
                 </div>
-                <div class="prevention-item">
-                    <h3>Actualizaciones y Parches Constantes</h3>
-                    <p>Mantener todos los componentes del sistema (SO, servidor web, bases de datos, frameworks, librerías) actualizados con los últimos parches de seguridad para cerrar vulnerabilidades conocidas.</p>
+                <div class="threat-item">
+                    <h4><i class="fas fa-database"></i> Inyección SQL</h4>
+                    <p>Inserción de código SQL malicioso en un campo de entrada, lo que permite al atacante manipular la base de datos o acceder a información no autorizada.</p>
                 </div>
-                <div class="prevention-item">
-                    <h3>Principios de Mínimo Privilegio</h3>
-                    <p>Conceder solo los permisos necesarios a usuarios, aplicaciones y procesos. Limitar el acceso y las capacidades reduce el impacto de una posible brecha de seguridad.</p>
+                <div class="threat-item">
+                    <h4><i class="fas fa-code"></i> Cross-Site Scripting (XSS)</h4>
+                    <p>Inyectar scripts maliciosos (generalmente JavaScript) en páginas web vistas por otros usuarios, permitiendo el robo de sesiones, cookies o la manipulación de contenido.</p>
                 </div>
-                <div class="prevention-item">
-                    <h3>Gestión de Errores y Logs</h3>
-                    <p>Implementar un manejo de errores robusto que no revele información sensible. Mantener registros (logs) detallados para monitorear y detectar actividades sospechosas.</p>
+                <div class="threat-item">
+                    <h4><i class="fas fa-user-secret"></i> Robo de Credenciales / Identidad</h4>
+                    <p>Obtener nombres de usuario y contraseñas a través de ataques de fuerza bruta, ingeniería social o el compromiso de sistemas, lo que lleva al acceso no autorizado.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-server"></i> Ataques DDoS</h4>
+                    <p>Saturar un servidor, servicio o red con una gran cantidad de tráfico para interrumpir su funcionamiento normal, haciéndolo inaccesible para los usuarios legítimos.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-key"></i> Broken Access Control</h4>
+                    <p>Fallas en la implementación de controles de acceso que permiten a los usuarios acceder a funciones o datos a los que no deberían tener permiso.</p>
                 </div>
             </div>
         </section>
 
-        <section id="consecuencias" class="card consequences-section">
-            <h2>3. Consecuencias de un Ataque Exitoso 💥</h2>
-            <p class="subtitle">El impacto de una brecha de seguridad puede ser devastador y multifacético.</p>
+        <section id="consecuencias" class="card">
+            <h2><i class="fas fa-skull-crossbones"></i> Consecuencias de un Ataque Exitoso</h2>
+            <p class="subtitle">El impacto va más allá de lo técnico; puede ser devastador para individuos y organizaciones.</p>
             <ul>
-                <li><strong>Pérdida/Robo de Datos Sensibles:</strong> Información de clientes, datos financieros, propiedad intelectual.</li>
-                <li><strong>Interrupción del Servicio:</strong> Caída total o parcial de la aplicación o sitio web, afectando la operatividad.</li>
-                <li><strong>Daño a la Reputación y Confianza:</strong> Pérdida de credibilidad, impacto negativo en la imagen de la marca y lealtad del cliente.</li>
-                <li><strong>Pérdidas Financieras Directas:</strong> Costos de recuperación, multas regulatorias, demandas legales.</li>
-                <li><strong>Compromiso Legal y Regulatorio:</strong> Incumplimiento de normativas de protección de datos (GDPR, HIPAA, LOPD).</li>
+                <li><i class="fas fa-money-bill-wave"></i> **Pérdidas Económicas:** Multas regulatorias, costos de recuperación, pérdida de ventas, demandas legales.</li>
+                <li><i class="fas fa-user-slash"></i> **Robo / Pérdida de Datos:** Datos de clientes, propiedad intelectual, secretos comerciales expuestos o eliminados.</li>
+                <li><i class="fas fa-heart-broken"></i> **Daño a la Reputación:** Pérdida de confianza, imagen pública deteriorada, impacto a largo plazo en la marca.</li>
+                <li><i class="fas fa-exclamation-circle"></i> **Interrupción del Servicio:** Caída de sitios web o aplicaciones críticas, impactando operaciones y productividad.</li>
+                <li><i class="fas fa-gavel"></i> **Consecuencias Legales:** Incumplimiento de normativas de protección de datos (GDPR, LOPD), sanciones severas.</li>
             </ul>
+        </section>
+
+        <section id="casos-ejemplos" class="card">
+            <h2><i class="fas fa-file-invoice"></i> Casos Importantes de Brechas de Seguridad (Ejemplos)</h2>
+            <p class="subtitle">La historia nos muestra que nadie es inmune. Aprender de estos casos es fundamental.</p>
+            <div class="case-studies-grid">
+                <div class="case-study-item">
+                    <div class="image-placeholder"><i class="fas fa-lock"></i></div>
+                    <div class="content">
+                        <h4>Ataque a Equifax (2017)</h4>
+                        <p>Una vulnerabilidad en Apache Struts permitió a atacantes acceder a datos personales de 147 millones de personas. Un ejemplo de la importancia de la gestión de parches.</p>
+                    </div>
+                </div>
+                <div class="case-study-item">
+                    <div class="image-placeholder"><i class="fas fa-user-secret"></i></div>
+                    <div class="content">
+                        <h4>Brecha de Marriott (2018)</h4>
+                        <p>Una intrusión que duró años en la base de datos de Starwood (adquirida por Marriott) expuso datos de 500 millones de huéspedes, incluyendo pasaportes y tarjetas de crédito.</p>
+                    </div>
+                </div>
+                <div class="case-study-item">
+                    <div class="image-placeholder"><i class="fas fa-cloud"></i></div>
+                    <div class="content">
+                        <h4>Caso SolarWinds (2020)</h4>
+                        <p>Un ataque de cadena de suministro comprometió el software de gestión de red de SolarWinds, permitiendo a los atacantes acceder a miles de organizaciones y agencias gubernamentales.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="prevencion" class="card">
+            <h2><i class="fas fa-shield-alt"></i> Estrategias Clave de Prevención (El Escudo Protector)</h2>
+            <p class="subtitle">La seguridad web es un esfuerzo constante. Implementa estas prácticas para fortificar tus defensas.</p>
+            <div class="prevention-grid">
+                <div class="prevention-item">
+                    <h3><i class="fas fa-check-circle"></i> Validación y Saneamiento de Entradas</h3>
+                    <p>Asegúrate de que todos los datos recibidos del usuario sean válidos y seguros. Filtra caracteres especiales y código malicioso para prevenir inyecciones SQL, XSS, etc.</p>
+                </div>
+                <div class="prevention-item">
+                    <h3><i class="fas fa-sync-alt"></i> Mantener el Software Actualizado</h3>
+                    <p>Actualiza regularmente sistemas operativos, frameworks, librerías y dependencias. Los parches de seguridad corrigen vulnerabilidades conocidas.</p>
+                </div>
+                <div class="prevention-item">
+                    <h3><i class="fas fa-users-cog"></i> Principio del Mínimo Privilegio (PoLP)</h3>
+                    <p>Otorga a usuarios, procesos y aplicaciones solo los permisos mínimos necesarios para realizar sus funciones. Esto limita el daño si una cuenta es comprometida.</p>
+                </div>
+                <div class="prevention-item">
+                    <h3><i class="fas fa-cogs"></i> Configuración Segura</h3>
+                    <p>Implementa configuraciones de seguridad estrictas en servidores, bases de datos y aplicaciones, deshabilitando servicios innecesarios y cambiando valores por defecto.</p>
+                </div>
+                <div class="prevention-item">
+                    <h3><i class="fas fa-lock"></i> Autenticación y Autorización Robustas</h3>
+                    <p>Usa contraseñas fuertes, MFA (Autenticación Multifactor), gestiona sesiones de forma segura y verifica siempre los permisos de los usuarios antes de conceder acceso.</p>
+                </div>
+                <div class="prevention-item">
+                    <h3><i class="fas fa-user-shield"></i> Educación y Concienciación del Usuario</h3>
+                    <p>Capacita a los usuarios sobre los riesgos de phishing, ingeniería social y buenas prácticas de seguridad. El factor humano es a menudo el eslabón más débil.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="factores-tecnicos" class="card">
+            <h2><i class="fas fa-laptop-code"></i> Factores Técnicos para el Desarrollo Web Seguro</h2>
+            <p class="subtitle">La seguridad debe ser una prioridad desde el diseño hasta la implementación.</p>
+            <div class="tech-factors">
+                <ul>
+                    <li><i class="fas fa-database"></i> **ORMs y consultas parametrizadas:** Usar Object-Relational Mappers y consultas preparadas para prevenir inyecciones SQL.</li>
+                    <li><i class="fas fa-cookie-bite"></i> **Cabeceras de seguridad HTTP:** Implementar cabeceras como Content Security Policy (CSP), X-XSS-Protection, HSTS.</li>
+                    <li><i class="fas fa-shield-alt"></i> **Uso de WAFs (Web Application Firewalls):** Proteger la aplicación de ataques comunes filtrando el tráfico malicioso.</li>
+                    <li><i class="fas fa-network-wired"></i> **Segmentación de red y firewalls:** Aislar componentes críticos y controlar el tráfico entre ellos.</li>
+                    <li><i class="fas fa-undo-alt"></i> **Gestión de errores segura:** No revelar información sensible en mensajes de error al usuario final.</li>
+                    <li><i class="fas fa-bug"></i> **Pruebas de seguridad regulares:** Realizar auditorías de código, penetration testing y análisis de vulnerabilidades.</li>
+                </ul>
+            </div>
+        </section>
+
+        <section id="factor-humano" class="card">
+            <h2><i class="fas fa-user-friends"></i> El Factor Humano: Concienciación y Cultura de Seguridad</h2>
+            <p class="subtitle">Las personas son una línea de defensa crucial. Una buena cultura de seguridad es indispensable.</p>
+            <div class="human-factors">
+                <ul>
+                    <li><i class="fas fa-chalkboard-teacher"></i> **Formación Continua:** Educar a empleados sobre nuevas amenazas y mejores prácticas.</li>
+                    <li><i class="fas fa-lock"></i> **Gestión de Contraseñas:** Promover el uso de contraseñas complejas y gestores de contraseñas.</li>
+                    <li><i class="fas fa-exclamation-triangle"></i> **Reporte de Incidentes:** Establecer canales claros para que los empleados reporten actividades sospechosas.</li>
+                    <li><i class="fas fa-handshake"></i> **Cultura de Responsabilidad:** Fomentar que la seguridad sea una responsabilidad compartida por todos.</li>
+                </ul>
+            </div>
         </section>
     </main>
 
     <footer>
         <div class="container">
-            <p>&copy; Exposición de Ciberseguridad Web | La seguridad digital es una prioridad compartida.</p>
+            <p><i class="fas fa-infinity"></i> La Seguridad Web es una Responsabilidad Continua de Todos.</p>
+            <p>¡Explora, Aprende y Protege!</p>
         </div>
     </footer>
 
