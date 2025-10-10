@@ -1,1 +1,242 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exposición: Vulnerabilidades y Ataques Web</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* RESET BÁSICO Y TIPOGRAFÍA */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
+        body {
+            font-family: 'Roboto', sans-serif; /* Fuente moderna y legible */
+            line-height: 1.6;
+            color: #333;
+            background-color: #f4f7f9; /* Fondo muy claro para contraste */
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px 0;
+        }
+
+        /* ENCABEZADO (HEADER) */
+        header {
+            background-color: #007bff; /* Azul vibrante de seguridad */
+            color: white;
+            padding: 40px 0;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        header h1 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        header p {
+            font-size: 1.2em;
+        }
+
+        /* SECCIONES PRINCIPALES (CARDS) */
+        .card {
+            background-color: white;
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 8px; /* Bordes redondeados */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08); /* Sombra suave para efecto 3D */
+        }
+
+        h2 {
+            font-size: 2em;
+            color: #0056b3; /* Tono de azul más oscuro */
+            border-bottom: 3px solid #007bff;
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+
+        h3 {
+            color: #333;
+            margin-top: 15px;
+            margin-bottom: 10px;
+        }
+
+        p {
+            margin-bottom: 15px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: #6c757d;
+            margin-bottom: 25px;
+        }
+
+        /* ESTILOS ESPECÍFICOS PARA DEFINICIÓN */
+        .content-columns {
+            display: flex;
+            gap: 30px;
+        }
+
+        .column {
+            flex: 1;
+            padding: 20px;
+            border-left: 3px solid #ccc;
+        }
+
+        .column:first-child {
+            border-left: none; /* Eliminar borde del primer elemento */
+        }
+
+        .example {
+            font-style: italic;
+            color: #dc3545; /* Rojo para destacar el peligro */
+            border-left: 4px solid #dc3545;
+            padding-left: 10px;
+        }
+
+        /* ESTILOS ESPECÍFICOS PARA PREVENCIÓN */
+        .prevention-section {
+            background-color: #e9f7ff; /* Fondo más claro para la sección de prevención */
+        }
+
+        .prevention-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .prevention-item {
+            background-color: #ffffff;
+            padding: 20px;
+            border-radius: 6px;
+            border: 1px solid #cce5ff;
+        }
+
+        .prevention-item h3 {
+            color: #28a745; /* Verde para destacar la acción positiva */
+            font-weight: 700;
+        }
+
+        /* ESTILOS ESPECÍFICOS PARA CONSECUENCIAS */
+        .consequences-section ul {
+            list-style-type: none; /* Elimina las viñetas por defecto */
+            padding-left: 0;
+        }
+
+        .consequences-section li {
+            background-color: #f8d7da; /* Fondo suave para destacar el riesgo */
+            border-left: 5px solid #dc3545; /* Borde rojo fuerte */
+            margin-bottom: 10px;
+            padding: 10px 15px;
+            border-radius: 4px;
+            font-weight: 700;
+        }
+
+        /* PIE DE PÁGINA (FOOTER) */
+        footer {
+            background-color: #343a40; /* Gris muy oscuro */
+            color: white;
+            text-align: center;
+            padding: 15px 0;
+            margin-top: 40px;
+        }
+
+        /* MEDIA QUERY para Responsividad (móviles) */
+        @media (max-width: 768px) {
+            header h1 {
+                font-size: 2em;
+            }
+
+            h2 {
+                font-size: 1.5em;
+            }
+
+            .content-columns {
+                flex-direction: column; /* Apila las columnas en móvil */
+            }
+
+            .column {
+                border-left: none;
+                padding: 10px 0;
+            }
+
+            .column + .column {
+                border-top: 1px solid #eee;
+            }
+        }
+    </style>
+    </head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>🛡️ Ciberseguridad Web: Ataques y Vulnerabilidades</h1>
+            <p>Conoce, previene y entiende el impacto de las amenazas digitales.</p>
+        </div>
+    </header>
+
+    <main class="container">
+        <section id="definicion" class="card">
+            <h2>1. ¿Qué son Vulnerabilidades y Amenazas?</h2>
+            <div class="content-columns">
+                <div class="column">
+                    <h3>Vulnerabilidad (Debilidad) 🐞</h3>
+                    <p>Una **vulnerabilidad** es una **debilidad** o fallo en un sistema, aplicación o protocolo que un atacante puede explotar para obtener acceso no autorizado, causar daños o interrumpir el servicio. Es un "agujero de seguridad".</p>
+                    <p class="example">**Ejemplo Común:** Un formulario de inicio de sesión que no valida correctamente la entrada de datos, permitiendo una **Inyección SQL**.</p>
+                </div>
+                <div class="column">
+                    <h3>Amenaza/Ataque (Acción) 💣</h3>
+                    <p>Una **amenaza** es un evento potencial que podría explotar una vulnerabilidad. Un **ataque** es la materialización de esa amenaza, es decir, la acción de un actor malicioso para explotar la debilidad.</p>
+                    <p class="example">**Ejemplos Comunes:** **Cross-Site Scripting (XSS)**, **DDoS (Denegación de Servicio Distribuido)**, **Phishing**, **Malware**.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="prevencion" class="card prevention-section">
+            <h2>2. Estrategias de Prevención (El Escudo) 🛡️</h2>
+            <p class="subtitle">La seguridad es un proceso continuo. Estas son claves para mitigar los riesgos.</p>
+            <div class="prevention-list">
+                <div class="prevention-item">
+                    <h3>✅ Validación y Saneamiento de Entradas</h3>
+                    <p>Nunca confíes en los datos que vienen del usuario. Valida (que el dato sea del tipo esperado) y sanea (limpia de código malicioso) toda la información de entrada para prevenir ataques como Inyección SQL y XSS.</p>
+                </div>
+                <div class="prevention-item">
+                    <h3>✅ Mantener el Software Actualizado</h3>
+                    <p>Aplicar parches de seguridad y actualizar sistemas operativos, servidores web, frameworks y librerías de forma regular. Las versiones antiguas suelen tener vulnerabilidades conocidas que son fáciles de explotar.</p>
+                </div>
+                <div class="prevention-item">
+                    <h3>✅ Principio del Mínimo Privilegio (PoLP)</h3>
+                    <p>Asegurarse de que cualquier usuario, proceso o programa de la aplicación solo tenga los permisos necesarios para realizar sus tareas. Si un atacante compromete una cuenta, el daño potencial es limitado.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="consecuencias" class="card consequences-section">
+            <h2>3. Consecuencias de un Ataque Exitoso 💥</h2>
+            <p class="subtitle">El impacto de una violación de seguridad va más allá de lo técnico.</p>
+            <ul>
+                <li><strong>Pérdida de Datos o Robo:</strong> Exfiltración de información sensible (datos de clientes, propiedad intelectual, secretos comerciales).</li>
+                <li><strong>Pérdidas Económicas:</strong> Costos de reparación de sistemas, multas regulatorias (GDPR, etc.), pérdida de ventas durante la interrupción.</li>
+                <li><strong>Daño a la Reputación:</strong> Pérdida de confianza de clientes y socios, afectando la imagen pública de la empresa.</li>
+                <li><strong>Interrupción del Servicio:</strong> Caída del sitio web o aplicación, especialmente en ataques DDoS o por secuestro del sistema (Ransomware).</li>
+            </ul>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <p>&copy; Exposición de Ciberseguridad Web | ¡La seguridad es responsabilidad de todos!</p>
+        </div>
+    </footer>
+
+</body>
+</html>
