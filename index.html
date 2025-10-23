@@ -33,7 +33,7 @@
             font-family: 'Roboto', sans-serif;
             line-height: 1.7;
             color: var(--text-color);
-            background: var(--light-bg); /* Fondo simple para asegurar visibilidad */
+            background: var(--light-bg);
             min-height: 100vh;
         }
 
@@ -61,6 +61,12 @@
 
         main {
             padding-top: 30px;
+        }
+
+        .subtitle {
+            font-style: italic;
+            color: #718096;
+            margin-bottom: 20px;
         }
 
         /* SECCIONES (CARDS) */
@@ -93,7 +99,43 @@
         /* Contenido y columnas */
         .content-columns { display: flex; gap: 30px; flex-wrap: wrap; }
         .column { flex: 1; min-width: 300px; padding: 20px; background-color: var(--light-bg); border-radius: 8px; border-left: 4px solid var(--secondary-color); }
-        .example { font-style: italic; color: #e30000; border-left: 4px solid #dc3545; padding-left: 10px; background-color: #ffebeb; }
+        .column h3 { color: var(--primary-color); margin-bottom: 15px; display: flex; align-items: center; gap: 10px; }
+        .example { font-style: italic; color: #e30000; border-left: 4px solid #dc3545; padding-left: 10px; background-color: #ffebeb; margin-top: 10px; padding: 10px; border-radius: 5px; }
+
+        /* Estilo de Amenazas (Diapositiva 2) */
+        .threat-list {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+        .threat-item {
+            background: linear-gradient(135deg, #fff5f5 0%, #ffffff 100%);
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 5px solid #dc3545;
+            transition: all var(--transition-speed);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        }
+        .threat-item:hover {
+            transform: translateX(5px);
+            box-shadow: 0 4px 12px rgba(220, 53, 69, 0.15);
+        }
+        .threat-item h4 {
+            color: #c53030;
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1.1em;
+        }
+        .threat-item h4 i {
+            color: #dc3545;
+        }
+        .threat-item p {
+            color: #4a5568;
+            line-height: 1.6;
+        }
 
         /* Estilo de Consecuencias (Diapositiva 5) */
         .consequences-grid {
@@ -111,7 +153,7 @@
         }
         .consequence-box:hover { transform: scale(1.03); }
         .consequence-box i { font-size: 2.5em; color: #e53e3e; margin-bottom: 10px; }
-        .consequence-box strong { font-size: 1.2em; color: #c53030; }
+        .consequence-box strong { font-size: 1.2em; color: #c53030; display: block; margin-bottom: 8px; }
 
         /* Estilo de Prevención (Diapositiva 7) */
         .prevention-grid {
@@ -125,24 +167,40 @@
             border-radius: 10px;
             border-top: 5px solid #28a745;
         }
-        .prevention-item h3 { color: #1a8a3a; display: flex; align-items: center; gap: 10px; }
+        .prevention-item h3 { color: #1a8a3a; display: flex; align-items: center; gap: 10px; margin-bottom: 10px; }
 
         /* Estilo de Factores (Diapositivas 8 y 9) */
+        .factor-section ul { list-style: none; margin-top: 15px; }
         .factor-section li {
             background-color: var(--light-bg);
             padding: 15px 20px;
+            margin-bottom: 12px;
             border-radius: 8px;
             border-left: 5px solid var(--secondary-color);
             display: flex;
             align-items: flex-start;
             gap: 12px;
         }
+        .factor-section li i { color: var(--secondary-color); margin-top: 3px; }
         
         /* Estilo de Conclusión (Diapositiva 10) */
         .conclusion-grid {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 30px;
+        }
+        .conclusion-principle {
+            background-color: var(--light-bg);
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 4px solid var(--accent-color);
+        }
+        .conclusion-principle h4 {
+            color: var(--primary-color);
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 10px;
         }
 
         /* PIE DE PÁGINA */
@@ -156,12 +214,17 @@
 
         /* MEDIA QUERY */
         @media (max-width: 768px) {
+            header h1 { font-size: 2em; }
+            h2 { font-size: 1.8em; }
             .content-columns, .consequences-grid, .prevention-grid, .conclusion-grid {
+                grid-template-columns: 1fr;
+            }
+            .threat-list {
                 grid-template-columns: 1fr;
             }
         }
     </style>
-    </head>
+</head>
 <body>
     <header>
         <div class="container">
@@ -193,11 +256,115 @@
             <div class="threat-list">
                 <div class="threat-item">
                     <h4><i class="fas fa-fish"></i> Phishing e Ingeniería Social</h4>
-                    <p>Técnicas para manipular a las personas y obtener información sensible suplantando una identidad de confianza.</p>
+                    <p>Técnicas para manipular a las personas y obtener información sensible suplantando una identidad de confianza mediante correos, llamadas o mensajes fraudulentos.</p>
                 </div>
                 <div class="threat-item">
-                    <h4><i class="fas fa-database"></i> Inyección SQL y XSS</h4>
-                    <p>Inserción de código malicioso para robar datos, comprometer la base de datos o secuestrar sesiones.</p>
+                    <h4><i class="fas fa-database"></i> Inyección SQL (SQLi)</h4>
+                    <p>Inserción de código SQL malicioso en campos de entrada para manipular bases de datos, robar, modificar o eliminar información sensible.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-code"></i> Cross-Site Scripting (XSS)</h4>
+                    <p>Inyección de scripts maliciosos en páginas web que se ejecutan en el navegador de otros usuarios, permitiendo robo de sesiones y datos.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-link"></i> Cross-Site Request Forgery (CSRF)</h4>
+                    <p>Engaña al navegador del usuario para ejecutar acciones no autorizadas en sitios donde está autenticado.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-virus"></i> Malware y Ransomware</h4>
+                    <p>Software malicioso que infecta sistemas para robar datos, espiar actividades o cifrar archivos exigiendo rescate.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-broadcast-tower"></i> Ataques DDoS</h4>
+                    <p>Saturación de servidores con tráfico masivo para interrumpir servicios y dejarlos inaccesibles.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-user-secret"></i> Man-in-the-Middle (MitM)</h4>
+                    <p>Intercepción de comunicaciones entre dos partes para espiar o manipular datos en tránsito.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-key"></i> Fuerza Bruta y Ataques de Diccionario</h4>
+                    <p>Intentos automatizados de adivinar contraseñas probando múltiples combinaciones o palabras comunes.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-user-lock"></i> Credential Stuffing</h4>
+                    <p>Uso de credenciales robadas de otras brechas para acceder a múltiples cuentas donde el usuario reutiliza contraseñas.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-folder-open"></i> Path Traversal / Directory Traversal</h4>
+                    <p>Acceso no autorizado a archivos y directorios fuera del directorio raíz de la aplicación web.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-terminal"></i> Inyección de Comandos</h4>
+                    <p>Ejecución de comandos arbitrarios del sistema operativo a través de vulnerabilidades en aplicaciones web.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-file-code"></i> Inclusión de Archivos (RFI/LFI)</h4>
+                    <p>Inclusión de archivos maliciosos externos o locales para ejecutar código no autorizado en el servidor.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-file-alt"></i> XXE (XML External Entity)</h4>
+                    <p>Explotación de procesadores XML mal configurados para acceder a archivos locales o ejecutar ataques SSRF.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-server"></i> SSRF (Server-Side Request Forgery)</h4>
+                    <p>Forzar al servidor a realizar peticiones a recursos internos o externos no autorizados.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-upload"></i> Carga de Archivos Maliciosos</h4>
+                    <p>Subida de archivos que contienen código malicioso explotando validaciones débiles.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-cog"></i> Configuraciones Inseguras</h4>
+                    <p>Errores de configuración en servidores, bases de datos o aplicaciones que exponen información sensible.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-shield-alt"></i> Autenticación y Autorización Débil</h4>
+                    <p>Fallas en mecanismos de autenticación que permiten acceso no autorizado a recursos protegidos.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-eye-slash"></i> Exposición de Datos Sensibles</h4>
+                    <p>Filtración de información confidencial por falta de cifrado, logs expuestos o respuestas de error verbosas.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-balance-scale"></i> Deserialización Insegura</h4>
+                    <p>Manipulación de objetos serializados para ejecutar código arbitrario o modificar lógica de aplicación.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-puzzle-piece"></i> Uso de Componentes Vulnerables</h4>
+                    <p>Explotación de vulnerabilidades conocidas en librerías, frameworks o dependencias desactualizadas.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-clipboard-list"></i> Logging & Monitoring Insuficiente</h4>
+                    <p>Falta de registros de actividad que impide detectar y responder a incidentes de seguridad a tiempo.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-robot"></i> API Abuse</h4>
+                    <p>Explotación de APIs mal protegidas para acceder a funcionalidades o datos sin autorización adecuada.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-network-wired"></i> Session Hijacking</h4>
+                    <p>Robo de tokens de sesión para suplantar la identidad de usuarios legítimos.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-mouse-pointer"></i> Clickjacking</h4>
+                    <p>Engañar a usuarios para que hagan clic en elementos ocultos realizando acciones no intencionadas.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-laptop"></i> Drive-by Download</h4>
+                    <p>Descarga automática de malware al visitar sitios web comprometidos sin interacción del usuario.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-user-times"></i> Insider Threats</h4>
+                    <p>Amenazas internas de empleados o personas con acceso legítimo que abusan de sus privilegios.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-link-slash"></i> Broken Access Control</h4>
+                    <p>Fallas en controles de acceso que permiten a usuarios acceder a recursos o funciones no autorizadas.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-bezier-curve"></i> Business Logic Vulnerabilities</h4>
+                    <p>Explotación de fallas en la lógica de negocio de la aplicación para realizar acciones no previstas.</p>
                 </div>
             </div>
         </section>
