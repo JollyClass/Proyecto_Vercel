@@ -3,422 +3,313 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Simulador de Ondas Electromagnéticas</title>
+    <title>Exposición: Ciberseguridad Web | Vulnerabilidades y Ataques ദ്ദി(˵ •̀ ᴗ - ˵ ) ✧ </title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&family=Roboto:wght@300;400;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     
     <style>
-        /* Variables CSS para manejo de color */
+        /* Variables CSS */
         :root {
-            --color-primary: #007bff; /* Azul */
-            --color-secondary: #28a745; /* Verde */
-            --color-background: #f4f7f6; /* Gris claro */
-            --color-card-bg: #ffffff; /* Blanco */
-            --color-text: #343a40; /* Gris oscuro */
-            --color-wave: #ffc107; /* Amarillo para la onda */
+            --primary-color: #5b21b6;
+            --secondary-color: #8b5cf6;
+            --accent-color: #00e0b7;
+            --text-color: #2d3748;
+            --light-bg: #f8fafc;
+            --card-bg: #ffffff;
+            --shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            --transition-speed: 0.3s ease;
         }
 
-        /* Estilos Globales */
-        body {
-            font-family: 'Arial', sans-serif;
+        /* RESET BÁSICO */
+        * {
             margin: 0;
             padding: 0;
-            background-color: var(--color-background);
-            color: var(--color-text);
-            line-height: 1.6;
+            box-sizing: border-box;
         }
 
-        header {
-            background-color: var(--color-primary);
-            color: white;
+        body {
+            font-family: 'Roboto', sans-serif;
+            line-height: 1.7;
+            color: var(--text-color);
+            background: var(--light-bg); /* Fondo simple para asegurar visibilidad */
+            min-height: 100vh;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 20px 0;
+        }
+
+        /* ENCABEZADO */
+        header {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 60px 0;
             text-align: center;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
         }
 
         header h1 {
-            margin-bottom: 5px;
+            font-family: 'Poppins', sans-serif;
+            font-size: 3em;
+            margin-bottom: 10px;
         }
 
-        .container {
-            display: flex;
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 0 20px;
-            gap: 20px;
+        main {
+            padding-top: 30px;
         }
 
-        /* Estilos de Secciones y Controles */
-        .controls, .visualization {
-            background-color: var(--color-card-bg);
-            padding: 20px;
-            border-radius: 8px;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+        /* SECCIONES (CARDS) */
+        .card {
+            background-color: var(--card-bg);
+            padding: 30px;
+            margin-bottom: 30px;
+            border-radius: 12px;
+            box-shadow: var(--shadow);
+            transition: transform var(--transition-speed);
         }
 
-        .controls {
-            flex: 1; 
-            min-width: 280px;
-        }
-
-        .visualization {
-            flex: 3;
+        .card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
         }
 
         h2 {
-            color: var(--color-primary);
-            border-bottom: 2px solid var(--color-secondary);
-            padding-bottom: 5px;
-            margin-top: 0;
-            margin-bottom: 15px;
-        }
-
-        /* Estilos para los Controles */
-        .control-group {
-            margin-bottom: 15px;
-            padding: 10px;
-            border: 1px solid #ddd;
-            border-radius: 4px;
-        }
-
-        .control-group label {
-            display: inline-flex; 
-            align-items: center; 
-            margin-bottom: 5px;
-            font-weight: bold;
-        }
-
-        input[type="range"], select {
-            width: 100%;
-            padding: 8px;
-            margin-top: 5px;
-            box-sizing: border-box;
-        }
-
-        /* Estilos para el Botón principal */
-        #iniciar-simulacion {
-            background-color: var(--color-secondary);
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            margin-top: 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            width: 100%;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
-        }
-
-        #iniciar-simulacion:hover {
-            background-color: #218838; 
-        }
-
-        /* Estilos para el Área de Visualización */
-        #wave-display {
-            background-color: #111; 
-            border: 2px solid var(--color-wave);
-            border-radius: 4px;
-            overflow: hidden;
-            display: block;
-        }
-
-        #wave-canvas {
-            display: block;
-            width: 100%;
-            height: 350px; 
-        }
-
-        /* Estilos Específicos para el Botón de Información (?) */
-        .info-btn {
-            background: var(--color-primary);
-            color: white;
-            border: none;
-            border-radius: 50%; 
-            width: 20px;
-            height: 20px;
-            text-align: center;
-            font-size: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-left: 8px; 
-            padding: 0;
+            font-family: 'Poppins', sans-serif;
+            font-size: 2.2em;
+            color: var(--primary-color);
+            border-bottom: 3px solid var(--accent-color);
+            padding-bottom: 15px;
+            margin-bottom: 25px;
             display: flex;
-            justify-content: center;
             align-items: center;
-            flex-shrink: 0; 
+            gap: 10px;
         }
+        
+        /* Contenido y columnas */
+        .content-columns { display: flex; gap: 30px; flex-wrap: wrap; }
+        .column { flex: 1; min-width: 300px; padding: 20px; background-color: var(--light-bg); border-radius: 8px; border-left: 4px solid var(--secondary-color); }
+        .example { font-style: italic; color: #e30000; border-left: 4px solid #dc3545; padding-left: 10px; background-color: #ffebeb; }
 
-        .info-btn:hover {
-            background-color: #0056b3; 
-        }
-
-        /* Estilo para el texto de información */
-        .info-text {
-            background-color: #e9f7ef; 
-            border-left: 3px solid var(--color-secondary);
-            padding: 10px;
-            margin-top: 10px;
-            font-size: 0.9em;
-            color: var(--color-text);
-        }
-
-        /* Pie de Página */
-        footer {
+        /* Estilo de Consecuencias (Diapositiva 5) */
+        .consequences-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
             text-align: center;
-            padding: 15px 0;
-            margin-top: 20px;
-            border-top: 1px solid #ccc;
-            color: #6c757d;
+        }
+        .consequence-box {
+            background-color: #ffeded;
+            padding: 20px;
+            border-radius: 10px;
+            border-bottom: 5px solid #e53e3e;
+            transition: transform var(--transition-speed);
+        }
+        .consequence-box:hover { transform: scale(1.03); }
+        .consequence-box i { font-size: 2.5em; color: #e53e3e; margin-bottom: 10px; }
+        .consequence-box strong { font-size: 1.2em; color: #c53030; }
+
+        /* Estilo de Prevención (Diapositiva 7) */
+        .prevention-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+        }
+        .prevention-item {
+            background-color: #e6ffed; 
+            padding: 25px;
+            border-radius: 10px;
+            border-top: 5px solid #28a745;
+        }
+        .prevention-item h3 { color: #1a8a3a; display: flex; align-items: center; gap: 10px; }
+
+        /* Estilo de Factores (Diapositivas 8 y 9) */
+        .factor-section li {
+            background-color: var(--light-bg);
+            padding: 15px 20px;
+            border-radius: 8px;
+            border-left: 5px solid var(--secondary-color);
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+        }
+        
+        /* Estilo de Conclusión (Diapositiva 10) */
+        .conclusion-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
         }
 
+        /* PIE DE PÁGINA */
+        footer {
+            background-color: var(--primary-color);
+            color: white;
+            text-align: center;
+            padding: 25px 0;
+            margin-top: 40px;
+        }
+
+        /* MEDIA QUERY */
         @media (max-width: 768px) {
-            .container {
-                flex-direction: column; 
+            .content-columns, .consequences-grid, .prevention-grid, .conclusion-grid {
+                grid-template-columns: 1fr;
             }
         }
     </style>
-</head>
+    </head>
 <body>
     <header>
-        <h1>Simulador de Ondas Electromagnéticas 🌌</h1>
-        <p>Ajusta los parámetros y observa la propagación en diferentes medios.</p>
+        <div class="container">
+            <h1><i class="fas fa-shield-alt"></i> Ciberseguridad Web: Amenazas y Defensa ദ്ദി(˵ •̀ ᴗ - ˵ ) ₊˚⊹♡ ✧</h1>
+            <p>Descubre las vulnerabilidades, aprende a prevenirlas y comprende sus consecuencias.</p>
+        </div>
     </header>
 
     <main class="container">
-        <section class="controls">
-            <h2>⚙️ Controles de Onda</h2>
-            
-            <div class="control-group">
-                <label for="frecuencia">
-                    Frecuencia (Hz):
-                    <button class="info-btn" data-info="frecuencia">?</button> 
-                </label>
-                <input type="range" id="frecuencia" name="frecuencia" min="10" max="100" value="50">
-                <span id="frecuencia-valor">50</span>
-                <p class="info-text" id="info-frecuencia" style="display: none;">
-                    La **Frecuencia (f)** es el número de oscilaciones que pasan por un punto en un segundo. 
-                    A mayor frecuencia, la **Longitud de Onda ($\lambda$) disminuye**, haciendo la onda más comprimida.
-                </p>
+        <section id="definicion" class="card">
+            <h2><i class="fas fa-question-circle"></i> 1. Conceptos Fundamentales</h2>
+            <div class="content-columns">
+                <div class="column">
+                    <h3>Vulnerabilidad (Debilidad) <i class="fas fa-bug"></i></h3>
+                    <p>Un defecto en un sistema, aplicación o protocolo que un atacante puede explotar.</p>
+                    <p class="example">Ejemplo: Un código que no revisa el tipo de dato que introduce un usuario.</p>
+                </div>
+                <div class="column">
+                    <h3>Amenaza / Ataque (Acción) <i class="fas fa-bomb"></i></h3>
+                    <p>Un riesgo potencial de daño. El ataque es la acción de un actor malicioso para explotar esa vulnerabilidad.</p>
+                    <p class="example">Ejemplo: Un atacante realiza una Inyección SQL.</p>
+                </div>
             </div>
-
-            <div class="control-group">
-                <label for="amplitud">
-                    Amplitud (Unidades):
-                    <button class="info-btn" data-info="amplitud">?</button> 
-                </label>
-                <input type="range" id="amplitud" name="amplitud" min="0.1" max="2" step="0.1" value="1.0">
-                <span id="amplitud-valor">1.0</span>
-                <p class="info-text" id="info-amplitud" style="display: none;">
-                    La **Amplitud (A)** es la altura máxima de la onda respecto al punto de equilibrio. 
-                    Determina la **intensidad** o **energía** de la onda electromagnética (cuán "fuerte" es).
-                </p>
+        </section>
+        
+        <section id="amenazas-comunes" class="card">
+            <h2><i class="fas fa-exclamation-triangle"></i> 2. Principales Amenazas y Vectores de Ataque</h2>
+            <p class="subtitle">Conocer las tácticas más utilizadas es esencial para la defensa.</p>
+            <div class="threat-list">
+                <div class="threat-item">
+                    <h4><i class="fas fa-fish"></i> Phishing e Ingeniería Social</h4>
+                    <p>Técnicas para manipular a las personas y obtener información sensible suplantando una identidad de confianza.</p>
+                </div>
+                <div class="threat-item">
+                    <h4><i class="fas fa-database"></i> Inyección SQL y XSS</h4>
+                    <p>Inserción de código malicioso para robar datos, comprometer la base de datos o secuestrar sesiones.</p>
+                </div>
             </div>
-            
-            <h2>🌐 Medio de Propagación</h2>
-            <div class="control-group">
-                <label for="medio">Seleccionar Medio (Índice de Refracción n):</label>
-                <select id="medio" name="medio">
-                    <option value="1.00">Vacío (n≈1.00)</option>
-                    <option value="1.0003">Aire (n≈1.0003)</option>
-                    <option value="1.33">Agua (n≈1.33)</option>
-                    <option value="1.52">Vidrio (n≈1.52)</option>
-                </select>
-            </div>
-            
-            <button id="iniciar-simulacion">Iniciar Simulación</button>
         </section>
 
-        <section class="visualization">
-            <h2>✨ Visualización de Onda</h2>
-            <div id="wave-display">
-                <canvas id="wave-canvas"></canvas>
+        <section id="consecuencias" class="card">
+            <h2><i class="fas fa-skull-crossbones"></i> 3. Consecuencias de la Materialización del Riesgo</h2>
+            <p class="subtitle">El impacto de una brecha de seguridad se mide en múltiples niveles.</p>
+            <div class="consequences-grid">
+                <div class="consequence-box">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <strong>Pérdidas Económicas (Muy altas! (,,>﹏<,,))</strong>
+                    <span>Costos de recuperación y multas.</span>
+                </div>
+                <div class="consequence-box">
+                    <i class="fas fa-chart-line"></i>
+                    <strong>Daño Reputacional</strong>
+                    <span>Pérdida de confianza.</span>
+                </div>
+                <div class="consequence-box">
+                    <i class="fas fa-power-off"></i>
+                    <strong>Interrupción Operacional</strong>
+                    <span>Caída del servicio.</span>
+                </div>
+            </div>
+        </section>
+
+        <section id="casos-ejemplos" class="card">
+            <h2><i class="fas fa-file-invoice"></i> 4. Casos Importantes de Brechas de Seguridad</h2>
+            <p class="subtitle">Ejemplos recientes que demuestran la magnitud de las amenazas.</p>
+            <div class="content-columns">
+                <div class="column">
+                    <h4><i class="fas fa-plane-departure"></i> Ataque a Aerolínea</h4>
+                    <p>Robo masivo de datos de clientes y credenciales.</p>
+                </div>
+                <div class="column">
+                    <h4><i class="fas fa-cloud"></i> Brecha en la Cadena de Suministro</h4>
+                    <p>Compromiso de un proveedor, afectando a múltiples empresas cliente.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="prevencion" class="card">
+            <h2><i class="fas fa-shield-alt"></i> 5. Estrategias Clave de Prevención</h2>
+            <p class="subtitle">La defensa debe ser multicapa y constante.</p>
+            <div class="prevention-grid">
+                <div class="prevention-item">
+                    <h3><i class="fas fa-sync-alt"></i> Gestión de Parches</h3>
+                    <p>Mantener todo el software actualizado.</p>
+                </div>
+                <div class="prevention-item">
+                    <h3><i class="fas fa-lock"></i> Validar Entradas de Usuario</h3>
+                    <p>Nunca confiar en los datos de entrada para prevenir inyecciones.</p>
+                </div>
+                <div class="prevention-item">
+                    <h3><i class="fas fa-cogs"></i> Configuración Segura</h3>
+                    <p>Asegurar que las configuraciones de los sistemas sean restrictivas.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="factores" class="card factor-section">
+            <h2><i class="fas fa-users-cog"></i> 6. Factores de Riesgo: Técnicos vs. Humanos</h2>
+            
+            <div class="content-columns">
+                <div class="column">
+                    <h3><i class="fas fa-laptop-code"></i> Factores Técnicos (Diapositiva 8)</h3>
+                    <ul>
+                        <li><i class="fas fa-code"></i> Uso de consultas parametrizadas.</li>
+                        <li><i class="fas fa-key"></i> Implementar Autenticación Multifactor (MFA).</li>
+                        <li><i class="fas fa-bug"></i> Pruebas de seguridad regulares.</li>
+                    </ul>
+                </div>
+                <div class="column">
+                    <h3><i class="fas fa-user-friends"></i> Factor Humano (Diapositiva 9)</h3>
+                    <ul>
+                        <li><i class="fas fa-chalkboard-teacher"></i> Formación Continua.</li>
+                        <li><i class="fas fa-lock"></i> Buena Gestión de Contraseñas.</li>
+                        <li><i class="fas fa-handshake"></i> Fomentar la Cultura de Seguridad.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <section id="conclusion" class="card">
+            <h2><i class="fas fa-hand-holding-heart"></i> 7. Conclusión: El Triángulo de la Seguridad</h2>
+            <p class="subtitle">La seguridad web se fundamenta en la responsabilidad de todos.</p>
+            <div class="conclusion-grid">
+                <div class="conclusion-principle">
+                    <h4><i class="fas fa-check"></i> Prevención Activa</h4>
+                    <p>Mitigar vulnerabilidades.</p>
+                </div>
+                <div class="conclusion-principle">
+                    <h4><i class="fas fa-search"></i> Detección Temprana</h4>
+                    <p>Monitorear y responder a las amenazas.</p>
+                </div>
+                <div class="conclusion-principle">
+                    <h4><i class="fas fa-redo"></i> Recuperación</h4>
+                    <p>Planes de respaldo y restauración.</p>
+                </div>
+                <div class="conclusion-principle">
+                    <h4><i class="fas fa-infinity"></i> Responsabilidad</h4>
+                    <p>Compromiso individual.</p>
+                </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <p>© 2025 Simulador EM - HTML, CSS & JS</p>
+        <div class="container">
+            <p><i class="fas fa-infinity"></i> Paula Diaz, Jeison Vivas y Victoria Polo ^. .^₎Ⳋ</p>
+        </div>
     </footer>
-    
-    <script>
-        // --- Referencias a Elementos HTML ---
-        const frecuenciaInput = document.getElementById('frecuencia');
-        const amplitudInput = document.getElementById('amplitud');
-        const medioSelect = document.getElementById('medio');
-        const frecuenciaValor = document.getElementById('frecuencia-valor');
-        const amplitudValor = document.getElementById('amplitud-valor');
-        const iniciarBoton = document.getElementById('iniciar-simulacion');
-        const canvas = document.getElementById('wave-canvas');
 
-        // --- Variables de Simulación ---
-        let ctx;
-        let animationFrameId;
-        let isSimulating = false;
-        let time = 0;
-
-        // Función auxiliar para obtener el valor de una variable CSS
-        function var2css(cssVar) {
-            try {
-                return getComputedStyle(document.documentElement).getPropertyValue(cssVar).trim();
-            } catch (e) {
-                if (cssVar === 'var(--color-wave)') return '#ffc107'; 
-                if (cssVar === 'var(--color-secondary)') return '#28a745';
-                return '#ccc';
-            }
-        }
-
-        // --- Ajuste del Canvas (CRUCIAL) ---
-        function resizeCanvas() {
-            if (!canvas) return;
-            canvas.width = canvas.offsetWidth; 
-            canvas.height = canvas.offsetHeight;
-            if (!isSimulating) {
-                drawWave();
-            }
-        }
-
-        // --- Funciones de Actualización de Controles ---
-        function updateValues() {
-            frecuenciaValor.textContent = frecuenciaInput.value;
-            amplitudValor.textContent = amplitudInput.value;
-            
-            time = 0; 
-
-            if (!isSimulating) {
-                drawWave(); 
-            }
-        }
-
-        // --- Lógica de Dibujo de la Onda (Función Principal) ---
-        function drawWave() {
-            if (!ctx) return;
-            
-            // 1. Obtener parámetros
-            const A = parseFloat(amplitudInput.value);          
-            const f = parseFloat(frecuenciaInput.value); 
-            const n = parseFloat(medioSelect.value);            
-            
-            // Parámetros de la Onda
-            const waveNumber_k = f * n * 0.05; 
-            const angularFrequency_omega = f * 0.05 / n; 
-            
-            // Dimensiones del Canvas
-            const W = canvas.width;
-            const H = canvas.height;
-            const centerY = H / 2;
-            const scaleY = H / (2 * 2.5);
-
-            // 2. Limpiar el Canvas
-            ctx.fillStyle = '#111';
-            ctx.fillRect(0, 0, W, H);
-
-            // 3. Dibujar Ejes (Línea central)
-            ctx.beginPath();
-            ctx.strokeStyle = '#333';
-            ctx.lineWidth = 1;
-            ctx.moveTo(0, centerY);
-            ctx.lineTo(W, centerY);
-            ctx.stroke();
-
-            // 4. Dibujar la Onda (El campo E)
-            ctx.beginPath();
-            ctx.strokeStyle = var2css('var(--color-wave)');
-            ctx.lineWidth = 3;
-            
-            for (let x = 0; x < W; x++) {
-                const normalizedX = x * 0.1; 
-
-                // Ecuación de onda: Y = A * sin( k*x - ω*t )
-                const y = A * Math.sin((waveNumber_k * normalizedX) - (angularFrequency_omega * time));
-                
-                const pixelY = centerY - (y * scaleY);
-                
-                if (x === 0) {
-                    ctx.moveTo(x, pixelY);
-                } else {
-                    ctx.lineTo(x, pixelY);
-                }
-            }
-            ctx.stroke();
-            
-            // Muestra la configuración actual
-            ctx.fillStyle = 'white';
-            ctx.font = '12px Arial';
-            ctx.fillText(`Frec: ${f} Hz | Amplitud: ${A} | Medio (n): ${n}`, 10, 20);
-        }
-
-        // --- Bucle de Animación ---
-        function animate() {
-            if (!isSimulating) {
-                return;
-            }
-            
-            time += 0.1; 
-            drawWave();
-            
-            animationFrameId = requestAnimationFrame(animate);
-        }
-
-        // --- Control de Inicio/Detención ---
-        function toggleSimulation() {
-            isSimulating = !isSimulating;
-            if (isSimulating) {
-                iniciarBoton.textContent = 'Detener Simulación';
-                iniciarBoton.style.backgroundColor = '#dc3545';
-                animate();
-            } else {
-                iniciarBoton.textContent = 'Iniciar Simulación';
-                iniciarBoton.style.backgroundColor = var2css('var(--color-secondary)');
-                cancelAnimationFrame(animationFrameId);
-                drawWave(); 
-            }
-        }
-
-        // --- Event Listeners y Inicialización ---
-        document.addEventListener('DOMContentLoaded', () => {
-            // Inicializar el contexto de dibujo
-            if (canvas) {
-                ctx = canvas.getContext('2d');
-            }
-
-            if (!canvas || !ctx) {
-                console.error("Error: No se pudo obtener el elemento canvas o su contexto.");
-                return; 
-            }
-            
-            // 1. Asignar los listeners de eventos de simulación
-            frecuenciaInput.addEventListener('input', updateValues);
-            amplitudInput.addEventListener('input', updateValues);
-            medioSelect.addEventListener('change', updateValues);
-            iniciarBoton.addEventListener('click', toggleSimulation);
-
-            // 2. MANEJO DE LA INFORMACIÓN CONTEXTUAL (Activación de los botones ?)
-            const infoButtons = document.querySelectorAll('.info-btn');
-            
-            infoButtons.forEach(button => {
-                button.addEventListener('click', (e) => {
-                    e.preventDefault(); 
-                    
-                    const targetName = button.dataset.info;
-                    const infoElement = document.getElementById(`info-${targetName}`);
-                    
-                    if (infoElement) {
-                        // Alternar la visibilidad de manera robusta
-                        if (infoElement.style.display === 'none' || infoElement.style.display === '') {
-                            infoElement.style.display = 'block';
-                        } else {
-                            infoElement.style.display = 'none';
-                        }
-                    } else {
-                        console.error(`Error de ID: No se encontró el elemento con ID: info-${targetName}. Revise el index.html.`);
-                    }
-                });
-            });
-
-            // 3. Inicializar el tamaño del canvas y los valores iniciales
-            resizeCanvas();
-            updateValues(); 
-        });
-
-        window.addEventListener('resize', resizeCanvas);
-    </script>
 </body>
 </html>
